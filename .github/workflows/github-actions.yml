@@ -77,7 +77,7 @@ jobs: # 실제 어떤 작업을 실행할지에 대한 명시
 
   deploy-to-server2:
     needs: sleep-and-healthcheck                                  # sleep-and-healthcheck 작업이 완료 후에야 시작
-    if: needs.sleep-and-healthcheck.status == 200 # sleep-and-healthcheck 작업이 성공했을 때만 실행
+    if: sleep-and-healthcheck.status == '200' # sleep-and-healthcheck 작업이 성공했을 때만 실행
     runs-on: [ ubuntu-latest ]
 
     steps:
