@@ -68,14 +68,16 @@ jobs: # 실제 어떤 작업을 실행할지에 대한 명시
           sleep 150
           status=$( curl -o /dev/null -s -w "%{http_code}" http://43.201.5.206:8080/v1/healthcheck )
           echo "status=$status" >> $GITHUB_ENV
+      - name: Print status from $GITHUB_ENV
+        run: echo "status=$status"
   
   
   
   
 
   deploy-to-server2:
-    needs: sleep-and-healthcheck                                   # sleep-and-healthcheck 작업이 완료 후에야 시작
-    if: ${{ needs.sleep-and-healthcheck.outputs.status == '200' }} # sleep-and-healthcheck 작업이 성공했을 때만 실행
+    needs: sleep-and-healthcheck                                  # sleep-and-healthcheck 작업이 완료 후에야 시작
+    if: ${{ needs.sleep-and-healthcheck.outputs.status == 'OK' }} # sleep-and-healthcheck 작업이 성공했을 때만 실행
     runs-on: [ ubuntu-latest ]
 
     steps:
