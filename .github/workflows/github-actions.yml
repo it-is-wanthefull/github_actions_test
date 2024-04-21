@@ -1,4 +1,4 @@
-name: Deploy on PR merge  # Actions 식별이름, 마지막테스트! - OK테스트
+name: Deploy on PR merge  # Actions 식별이름, 마지막테스트! - NO테스트
 
 on: # 발동조건
 #  pull_request: # github에서 pull-request일때
